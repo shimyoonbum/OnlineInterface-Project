@@ -1,0 +1,7 @@
+{
+    "responseCode": "000",
+    "responseMessage": "로그아웃 되었습니다.",
+    "responseCode1": "007",
+    "responseMessage1": "로그아웃 실패!",
+    "comment": "000:로그인 버튼 -> 로그아웃 버튼, 007: 현재 화면"
+}

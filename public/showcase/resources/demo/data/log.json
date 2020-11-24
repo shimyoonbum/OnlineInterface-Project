@@ -1,0 +1,8 @@
+{
+    "ifDate": "2020-06-22 11:03:35.0",
+    "method": "GET",
+    "param": "p1=a&p2=b",
+    "uri": "/user/1",
+    "reqJson": "{\"id\": 1,\"city\": \"seoul\",\"country\": \"korea\"}",
+    "resJson": "{\"firstName\":\"jw\",\"lastName\":\"s\",\"country\":\"korea\",\"responsecode\":\"000\",\"city\":\"seoul\",\"responsemessage\":\"성공\",\"emailId\":\"aaa@abc.com\",\"id\":\"1\",\"phoneNo\":\"010-1234-5678\"}"
+}

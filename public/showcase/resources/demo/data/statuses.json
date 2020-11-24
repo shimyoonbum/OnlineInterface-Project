@@ -1,0 +1,11 @@
+[
+    {"statusNm": "성공", "statusId": "000"},
+    {"statusNm": "실패", "statusId": "999"},
+    {"statusNm": "키값 중복 오류", "statusId": "100"},
+    {"statusNm": "인터페이스ID 오류", "statusId": "101"},
+    {"statusNm": "인증키 오류", "statusId": "102"},
+    {"statusNm": "데이터 없음", "statusId": "103"},
+    {"statusNm": "필수항목 누락 오류", "statusId": "104"},
+    {"statusNm": "JSON 형식 오류", "statusId": "105"},
+    {"statusNm": "미등록API", "statusId": "109"}
+]

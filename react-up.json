@@ -1,0 +1,29 @@
+{
+    "dev":{
+      "buildDir" :"./build",
+      "remoteDir":"/usr/local/OnlineIFClient/build",
+      "tarballName":"OnlineIFClient.tar",
+      "host": "211.233.54.52",
+      "port": 22,
+      "username": "root",
+      "password": "12#$qwER"
+    },
+    "prod1":{
+      "buildDir" :"./build",
+      "remoteDir":"/usr/local/OnlineIFClient/build",
+      "tarballName":"OnlineIFClient.tar",
+      "host": "121.254.255.103",
+      "port": 22,
+      "username": "root",
+      "password": "12#$qwER"
+    },
+    "prod2":{
+      "buildDir" :"./build",
+      "remoteDir":"/usr/local/OnlineIFClient/build",
+      "tarballName":"OnlineIFClient.tar",
+      "host": "121.254.255.104",
+      "port": 22,
+      "username": "root",
+      "password": "12#$qwER"
+    }
+  }

@@ -1,0 +1,7 @@
+[
+    {"interfaceNm": "전체 사용자 조회", "interfaceId": "IF_USER_ALL"},
+    {"interfaceNm": "한명 조회", "interfaceId": "IF_USER_ONE"},
+    {"interfaceNm": "사용자 생성", "interfaceId": "IF_USER_CREATE"},
+    {"interfaceNm": "사용자 변경", "interfaceId": "IF_USER_UPDATE"},
+    {"interfaceNm": "사용자 삭제", "interfaceId": "IF_USER_DELETE"}
+]

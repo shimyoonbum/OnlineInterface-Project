@@ -1,0 +1,18 @@
+{
+    "data":[
+        {
+            "ifSeq": "1",
+            "ifId": "IF_USER_ALL",
+            "active": "N",
+            "ifNm": "전체 사용자 조회",
+            "dummyNm": "사용자 전체"
+        },
+        {
+            "ifSeq": "2",
+            "ifId": "IF_USER_ALL",
+            "active": "N",
+            "ifNm": "전체 사용자 조회",
+            "dummyNm": "사용자 없음"
+        }
+    ]
+}

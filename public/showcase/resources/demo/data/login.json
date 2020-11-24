@@ -1,0 +1,13 @@
+{
+    "responseCode": "000",
+    "responseMessage": "성공",
+    "systemId": "system1",
+    "role": "U",
+    "responseCode1": "003",
+    "responseMessage1": "사용자ID가 존재하지 않습니다",
+    "responseCode2": "004",
+    "responseMessage2": "비밀번호가 일치하지 않습니다",
+    "responseCode3": "005",
+    "responseMessage3": "비밀번호 변경이 필요합니다",
+    "comment": "000:클릭한 페이지 조회, 003/004/005: 로그인 화면. systemId/role은 000인 경우만. systemId: system1/mall/cj/..., role: U(user)/A(admin)"
+}
