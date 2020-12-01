@@ -1,0 +1,45 @@
+.mainChart{
+    text-align : center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.mainTitle{
+    font-weight : 600;
+    padding-top: 30px;
+}
+
+.content{
+    display : flex;
+}
+
+.container{
+    flex : 1;
+    margin : 15px;
+    width : 30%;
+    text-align : center;
+    display: none;
+}
+
+.box{
+    margin : 10px 10px 20px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: block;
+    width: 95%;
+    height: 40%;
+}
+
+.p-button-success{
+    width: 300px;
+    height : 30px;
+    display: none;
+}
+
+.chart{
+    flex : 2;
+    margin : 15px;
+    display: none;
+    width : 70%;
+    background-color : white;
+}

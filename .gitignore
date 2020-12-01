@@ -8,8 +8,10 @@
 
 # production
 /build
+/bin
 /idea
 /.idea
+/.settings
 
 # misc
 .DS_Store

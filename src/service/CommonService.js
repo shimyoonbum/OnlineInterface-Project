@@ -4,7 +4,41 @@ if(window.proxy == null)
   window.proxy= '';
 
 export class CommonService {
-    
+  getMainInfo() {
+    return axios(window.proxy+'/common/getMainInfo', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        }
+      }).then(res => {
+        console.log(res);
+        if(res.data.proxy != null) {
+          window.proxy= res.data.proxy;
+          return this.getMainInfo();
+        }  
+        return res.data;
+      });
+  }
+
+  getMainSysInfo(data) {
+    return axios(window.proxy+'/common/getMainInfo', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        data: data
+      }).then(res => {
+        console.log(res);
+        if(res.data.proxy != null) {
+          window.proxy= res.data.proxy;
+          return this.getMainInfo();
+        }  
+        return res.data;
+      });
+  }
+
   getLogs(data) {
       // console.log('CommonService>getLogs>data:', data);
 

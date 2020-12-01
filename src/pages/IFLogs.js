@@ -99,10 +99,7 @@ export class IFLogs extends Component {
                             'system_id':data.system_id,
                             'role':data.role
                         }; 
-                    }      
-
-                    console.log(user);
-    
+                    }          
                     this.commonService.getSystems(user).then(data => {
                         // console.log('componentDidMount>getSystems>data:', data);
                         this.systems = data;
@@ -149,8 +146,6 @@ export class IFLogs extends Component {
             statuses: this.state.statuses,
             dummys: this.state.dummys
         };
-
-        console.log(param);
 
         this.commonService.getLogs(param).then(data => {
             // console.log('componentDidMount>getLogs>data:', data);

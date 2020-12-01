@@ -162,16 +162,6 @@ export class IFBackup extends Component {
         }
     }
 
-    // onCheck(e){    
-    //     this.setState({checked: e.checked});
-
-    //     if(e.checked == false){
-    //         document.getElementById('optionChange').setAttribute('disabled', true)
-    //     }else {
-    //         document.getElementById('optionChange').removeAttribute('disabled')
-    //     }
-    // }
-
     onSearch(e) {       
         this.getLogs(0)
     }
@@ -217,8 +207,6 @@ export class IFBackup extends Component {
                         optionLabel="name" value={this.state.tableNm} options={this.tables} onChange={(e) => this.setState({tableNm: e.value})} 
                         placeholder="테이블 선택"/>
                     </div>
-                    
-                    {/* <Checkbox style={{margin : '0px 5px 0px 5px'}} checked={this.state.checked} onChange={this.onCheck}></Checkbox> 활성  */}
                
                     <div style={{padding : '10px 0px 0px 20px', textAlign : 'left'}}>
                         검색 조건 입력<InputText id='optionChange' style={{width: '500px', margin : '0px 5px 0px 5px' , marginLeft : '19px'}} 
