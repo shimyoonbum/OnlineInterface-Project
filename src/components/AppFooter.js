@@ -5,7 +5,7 @@ export class AppFooter extends Component {
     constructor() {
         super();
 
-        this.version = require('../package.json') && require('../package.json').version;
+        this.version = require('../../package.json') && require('../../package.json').version;
     }
 
     render() {

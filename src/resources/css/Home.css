@@ -43,3 +43,15 @@
     width : 70%;
     background-color : white;
 }
+
+.blank{
+    height: 50px;
+}
+
+#success{
+    color: blue;
+}
+
+#fail{
+    color: red;
+}

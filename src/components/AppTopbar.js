@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types'
 import { Link } from 'react-router-dom';
 import { Button } from 'primereact/button';
-import {LoginService} from './service/LoginService';
+import {LoginService} from '../service/LoginService';
 import {Dialog} from 'primereact/components/dialog/Dialog';
 import {InputText} from 'primereact/components/inputtext/InputText';
-import sha256 from './sha256';
-import './AppTopbar.css';
+import sha256 from '../sha256';
+import '../resources/css/AppTopbar.css';
 
 export class AppTopbar extends Component {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppMenu } from './AppMenu';
+import { AppMenu } from './components/AppMenu';
 import classNames from 'classnames';
 
 import 'primereact/resources/themes/nova-light/theme.css';
@@ -9,9 +9,9 @@ import 'primeflex/primeflex.css';
 
 import './sass/App.scss';
 
-import AppRouter from './AppRouter';
-import AppTopbar from './AppTopbar';
-import AppFooter from './AppFooter';
+import AppRouter from './components/AppRouter';
+import AppTopbar from './components/AppTopbar';
+import AppFooter from './components/AppFooter';
 
 export class App extends Component {
 

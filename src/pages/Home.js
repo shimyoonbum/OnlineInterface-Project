@@ -4,15 +4,14 @@ import {CommonService} from '../service/CommonService';
 import {LoginService} from '../service/LoginService';
 import {Button} from 'primereact/components/button/Button';
 import 'primeflex/primeflex.css';
-import "../Home.css";
+import "../resources/css/Home.css";
 
 export class HomeComponent extends Component {
     constructor(props) {
         super(props);        
-        
+        this.launchClock();
         this.state = {
-            count1 : null,
-            count2 : null  
+            currentTime : new Date().toLocaleString()
         };
 
         this.commonService = new CommonService();
@@ -48,6 +47,7 @@ export class HomeComponent extends Component {
                         data.data2.forEach((item,idx)=>{
                             this.basicData.datasets[0].data.push(item.SUCCESS);
                         }); 
+                        console.log();
                         data.data3.forEach((item,idx)=>{
                             this.basicData.datasets[1].data.push(item.FAIL);
                         }); 
@@ -70,11 +70,7 @@ export class HomeComponent extends Component {
                 setTimeout(() => {
                     document.getElementById("mainBtn").style.display = "block";
                 }, 1500);                 
-            });
-            // this.setState({
-            //     count1: data,                
-            //     count2: data
-            // })                               
+            });                             
         }else{
             this.loginService.getProxySession();            
             document.getElementById("main").style.display = "block";           
@@ -82,12 +78,19 @@ export class HomeComponent extends Component {
         } 
     }
 
-    onClick() {
+    launchClock() { 
+        setInterval(() => { 
+            this.setState({ currentTime: new Date().toLocaleString() }); 
+        }, 1000); 
+    }
+
+    onClick() {        
+        let d = new Date();
         document.getElementById("main").style.display = "block";     
-        document.getElementById("mainBtn").style.display = "none";           
-        document.querySelector(".container").style.display = "block";   
-        document.getElementById("success").innerHTML = "4";    
-        document.getElementById("fail").innerHTML = "4"; 
+        document.getElementById("mainBtn").style.display = "none";     
+        document.querySelector(".container").style.display = "block";           
+        document.getElementById("success").innerHTML = this.basicData.datasets[0].data[6] + ' 회';    
+        document.getElementById("fail").innerHTML = this.basicData.datasets[1].data[6] + ' 회'; 
     }
 
     render() {
@@ -95,25 +98,26 @@ export class HomeComponent extends Component {
             <div>
                 <div className="mainChart">
                     <h1 className="mainTitle">중계 시스템 I/F DashBoard</h1>
-                        <div className="content">
-                            <Chart className="chart" id="main" type="bar" data={this.basicData}/>
-                            <div className="container">
-                                <h2>2020-12-01</h2>
-                                <div className="box">
-                                    <h2>I/F 성공</h2>
-                                    <h1 id="success"></h1>
-                                </div>
-                                <div className="box">
-                                    <h2>I/F 실패</h2>
-                                    <h1 id="fail"></h1>
-                                </div>
+                    <div className="content">
+                        <Chart className="chart" id="main" type="bar" data={this.basicData}/>
+                        <div className="container">
+                            <h2 id="today">{this.state.currentTime}</h2>
+                            <div className="box">
+                                <h2>I/F 성공</h2>
+                                <h1 id="success"></h1>
+                            </div>
+                            <div className="box">
+                                <h2>I/F 실패</h2>
+                                <h1 id="fail"></h1>
                             </div>
                         </div>
                     </div>
+                </div>
                 <div style={{textAlign: '-webkit-center'}}>
                     <Button id="mainBtn" label="7일간의 기록 확인" 
                     onClick={() => this.onClick()} className="p-button-success" />
                 </div>
+                <div className="blank"></div>
             </div>
         )
         // return (

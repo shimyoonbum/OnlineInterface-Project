@@ -9,7 +9,7 @@ import {BackUpService} from '../service/BackUpService';
 import {LoginService} from '../service/LoginService';
 import {InputText} from "primereact/components/inputtext/InputText";
 import "../sass/resources/style/DataTable.scss";
-import "../IFBackup.css"
+import "../resources/css/IFBackup.css"
 
 export class IFBackup extends Component {
 

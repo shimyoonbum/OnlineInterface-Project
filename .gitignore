@@ -12,6 +12,7 @@
 /idea
 /.idea
 /.settings
+/public/showcase
 
 # misc
 .DS_Store
@@ -19,4 +20,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock
+tsconfig.json
+debug.log
 
+.svn/pristine*
+.svn
+.project
+OnlineIFClient.tar
