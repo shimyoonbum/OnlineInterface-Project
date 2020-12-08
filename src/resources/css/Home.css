@@ -1,12 +1,10 @@
 .mainChart{
     text-align : center;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 20px 20px 20px 20px;
 }
 
 .mainTitle{
     font-weight : 600;
-    padding-top: 30px;
 }
 
 .content{
@@ -15,14 +13,15 @@
 
 .container{
     flex : 1;
-    margin : 15px;
+    margin : 0px 15px 15px 15px;
     width : 30%;
     text-align : center;
     display: none;
+    overflow: auto;
 }
 
 .box{
-    margin : 10px 10px 20px 10px;
+    margin : 0px 10px 10px 10px;
     border: 2px solid black;
     border-radius: 10px;
     display: block;
@@ -42,10 +41,6 @@
     display: none;
     width : 70%;
     background-color : white;
-}
-
-.blank{
-    height: 50px;
 }
 
 #success{

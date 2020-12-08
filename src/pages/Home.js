@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Chart } from 'primereact/chart';
+import { Card } from 'primereact/card';
 import {CommonService} from '../service/CommonService';
 import {LoginService} from '../service/LoginService';
 import {Button} from 'primereact/components/button/Button';
@@ -11,7 +12,8 @@ export class HomeComponent extends Component {
         super(props);        
         this.launchClock();
         this.state = {
-            currentTime : new Date().toLocaleString()
+            currentTime : new Date().toLocaleString(),
+            name : null
         };
 
         this.commonService = new CommonService();
@@ -41,6 +43,7 @@ export class HomeComponent extends Component {
         const userSession = window.sessionStorage.getItem('userToken');
         if(userSession != null){
             this.loginService.getSession().then(data => {
+                this.setState({name : data.name});
                 if(data.role == "A"){
                     this.commonService.getMainInfo().then(data => {  
                         this.basicData.labels = data.data;          
@@ -96,11 +99,12 @@ export class HomeComponent extends Component {
     render() {
         return (
             <div>
-                <div className="mainChart">
+                <Card className="mainChart">
                     <h1 className="mainTitle">중계 시스템 I/F DashBoard</h1>
                     <div className="content">
                         <Chart className="chart" id="main" type="bar" data={this.basicData}/>
                         <div className="container">
+                            <h2 id="today">접속 시스템 : {this.state.name}</h2>
                             <h2 id="today">{this.state.currentTime}</h2>
                             <div className="box">
                                 <h2>I/F 성공</h2>
@@ -112,12 +116,11 @@ export class HomeComponent extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div style={{textAlign: '-webkit-center'}}>
+                </Card>
+                <div style={{textAlign: '-webkit-center', heigth : '100px'}}>
                     <Button id="mainBtn" label="7일간의 기록 확인" 
                     onClick={() => this.onClick()} className="p-button-success" />
                 </div>
-                <div className="blank"></div>
             </div>
         )
         // return (
