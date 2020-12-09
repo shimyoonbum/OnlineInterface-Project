@@ -148,7 +148,7 @@ export class IFLogs extends Component {
         };
 
         this.commonService.getLogs(param).then(data => {
-            // console.log('componentDidMount>getLogs>data:', data);
+            console.log('componentDidMount>getLogs>data:', data);
             this.datasource = data.data;
             this.setState({
                 totalRecords: data.total,
@@ -404,6 +404,7 @@ export class IFLogs extends Component {
                         <Column field="client" header="전송IP" style={{overflow: 'auto'}} sortable />
                         <Column field="ifResult" header="처리결과" style={{overflow: 'auto'}} body={this.statusBodyTemplate} sortable />
                         <Column field="serverId" header="서버ID" style={{overflow: 'auto'}} sortable />
+                        <Column field="time" header="통신시간(초)" style={{overflow: 'auto'}} sortable />
                         <Column field="isDummy" header="Dummy여부" style={{overflow: 'auto'}} body={this.dummyBodyTemplate} sortable />
                     </DataTable>
                 </div>
