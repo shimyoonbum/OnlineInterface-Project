@@ -17,7 +17,11 @@ export class AppMenu extends Component {
     getMenu() {
         axios.get('showcase/resources/menu/menu.json', { headers: { 'Cache-Control' : 'no-cache' } })
             .then(res => res.data.data)
-            .then(data => this.setState({ menu: data, filteredMenu: data }));
+            .then(data => {            
+                //2020.12.14 dummy 메뉴 화면에 안보이게 filter 적용. 나중에 메뉴가 추가될 때 조정 가능
+                data[0].children = data[0].children.filter(data => data.name !== 'Dummy 인터페이스');
+                this.setState({ menu: data, filteredMenu: data })
+            });
     }
 
     onSearchInputChange(event) {

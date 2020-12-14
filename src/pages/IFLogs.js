@@ -148,7 +148,9 @@ export class IFLogs extends Component {
         };
 
         this.commonService.getLogs(param).then(data => {
-            console.log('componentDidMount>getLogs>data:', data);
+            // console.log('componentDidMount>getLogs>data:', data);            
+            var count = 0;
+            
             this.datasource = data.data;
             this.setState({
                 totalRecords: data.total,
@@ -156,6 +158,10 @@ export class IFLogs extends Component {
                 logs: this.datasource.slice(0, this.state.rows),
             });
 
+            this.state.logs.forEach(element => {
+                count += element.time;
+            });
+            console.log(count.toFixed(2)); //2020.12.14 총 시간 구하기 위한 부분
             this.setState({loading: false});  
         })
     }
