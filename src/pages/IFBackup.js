@@ -223,11 +223,11 @@ export class IFBackup extends Component {
                     </div>                    
 
                     <div style={{display: 'flex', paddingTop : '10px'}}>
-                        <div id="searchBtn" style={{flex: '1', textAlign : 'start', display : 'none', margin : '10px 10px 0px 10px', fontSize : '16px'}}>
-                            <Button style={{width: '150px'}} label="검색" onClick={(e) => this.onSearch(e)} className="p-button-success" />
+                        <div id="searchBtn" style={{textAlign : 'start', display : 'none', margin : '10px 10px 0px 10px', fontSize : '16px', float : 'left'}}>
+                            <Button style={{width : '100px'}} label="검색" onClick={(e) => this.onSearch(e)} icon="pi pi-search" className="p-button"/>
                         </div>
-                        <div id="recoverBtn" style={{flex: '7', textAlign : 'start', display : 'none', margin : '10px 10px 0px 10px', fontSize : '16px'}}>
-                            <Button style={{width: '150px'}} label="복구" onClick={() => this.onClick('displayConfirmation')} className="p-button-success" />
+                        <div id="recoverBtn" style={{textAlign : 'start', display : 'none', margin : '10px 10px 0px 10px', fontSize : '16px' , float : 'left'}}>
+                            <Button style={{width : '100px'}} label="복구" onClick={() => this.onClick('displayConfirmation')} icon="pi pi-check" className="p-button"/>
                         </div>
                     </div>                       
                     
