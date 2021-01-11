@@ -28,3 +28,6 @@ debug.log
 .svn
 .project
 OnlineIFClient.tar
+config/Chain_RootCA_Bundle.crt
+config/star_pulmuone_com_cert.pem
+config/star_pulmuone_com_key.pem
