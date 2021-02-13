@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { AppMenu } from './components/AppMenu';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import 'primereact/resources/themes/nova-light/theme.css';
@@ -12,46 +11,36 @@ import './sass/App.scss';
 import AppRouter from './components/AppRouter';
 import AppTopbar from './components/AppTopbar';
 import AppFooter from './components/AppFooter';
+import AppMenu from './components/AppMenu';
 
-export class App extends Component {
+const App = () => {
+    const [mobileMenuActive, setMobileMenuActive] = useState(false);
 
-    constructor() {
-        super();
-        this.state = {
-            mobileMenuActive: false
-        };
-
-        this.onMenuButtonClick = this.onMenuButtonClick.bind(this);
-        this.onMenuItemClick = this.onMenuItemClick.bind(this);
+    const onMenuButtonClick = () => {        
+        setMobileMenuActive(!mobileMenuActive)
     }
 
-    onMenuButtonClick() {
-        this.setState({ mobileMenuActive: !this.state.mobileMenuActive });
+    const onMenuItemClick = () => {
+        setMobileMenuActive(false)
     }
 
-    onMenuItemClick() {
-        this.setState({ mobileMenuActive: false });
-    }
+    const wrapperClassName = classNames('layout-wrapper', {
+        'layout-sidebar-mobile-active': mobileMenuActive
+    });
 
-    render() {
-        const wrapperClassName = classNames('layout-wrapper', {
-            'layout-sidebar-mobile-active': this.state.mobileMenuActive
-        });
+    return (
+        <div className={wrapperClassName}>
 
-        return (
-            <div className={wrapperClassName}>
+            <AppTopbar onMenuButtonClick={onMenuButtonClick}/>
 
-                <AppTopbar onMenuButtonClick={this.onMenuButtonClick}/>
+            <AppMenu onMenuItemClick={onMenuItemClick}/>
 
-                <AppMenu onMenuItemClick={this.onMenuItemClick}/>
-
-                <div className="layout-content">
-                    <AppRouter />
-                    <AppFooter />
-                </div>
+            <div className="layout-content">
+                <AppRouter />
+                <AppFooter />
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default App;

@@ -2,31 +2,18 @@
     "data": [
         {
             "name": "메인 메뉴",
-            "icon": "showcase/resources/images/mono/input.svg",
-            "meta": [
-                "Sample Case"
-            ],
             "children": [
                 {
                     "name": "Dummy 인터페이스",
-                    "to": "/dummyIF",
-                    "meta": [
-                        "datatable"
-                    ]
+                    "to": "/dummyIF"
                 },
                 {
                     "name": "인터페이스 로그",
-                    "to": "/IFLogs",
-                    "meta": [
-                        "datatable"
-                    ]
+                    "to": "/IFLogs"
                 },
                 {
                     "name": "백업 조회/복구",
-                    "to": "/IFBackup",
-                    "meta": [
-                        "datatable"
-                    ]
+                    "to": "/IFBackup"
                 }                
             ]
         }

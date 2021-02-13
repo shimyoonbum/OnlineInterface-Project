@@ -17,10 +17,7 @@ export class HomeComponent extends Component {
         };
 
         this.commonService = new CommonService();
-        this.loginService = new LoginService();
-        
-        this.success = [];
-        this.fail = [];
+        this.loginService = new LoginService();        
 
         this.basicData = {
             labels: [],

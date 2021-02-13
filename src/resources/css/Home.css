@@ -21,12 +21,12 @@
 }
 
 .box{
-    margin : 0px 10px 10px 10px;
     border: 2px solid black;
     border-radius: 10px;
     display: block;
-    width: 95%;
-    height: 40%;
+    width: 70%;
+    height: 140px;
+    margin:5px auto;
 }
 
 .p-button-success{

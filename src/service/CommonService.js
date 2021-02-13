@@ -12,7 +12,6 @@ export class CommonService {
           'Content-Type': 'application/json;charset=UTF-8'
         }
       }).then(res => {
-        console.log(res);
         if(res.data.proxy != null) {
           window.proxy= res.data.proxy;
           return this.getMainInfo();
