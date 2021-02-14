@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import {LoginService} from '../service/LoginService';
-import {Dialog} from 'primereact/components/dialog/Dialog';
-import {InputText} from 'primereact/components/inputtext/InputText';
 import sha256 from '../sha256';
 import '../resources/css/AppTopbar.css';
+import LoginModal from '../modals/LoginModal';
 
 const AppTopbar = props => {
     const [displayBasic, setDisplayBasic] = useState(false)
@@ -165,43 +164,14 @@ const AppTopbar = props => {
                         <button type="button" role="menuitem" className="p-link" onClick={(e) => onLogout()}>로그아웃</button>                           
                     </li>                 
                 </ul>
-            </div>  
-
-            <div className="content-section implementation dialog-demo">
-                <Dialog header="온라인 중계시스템 로그인" visible={displayBasic} style={{width: '50vw'}} modal={true} footer={renderFooter('displayBasic')} onHide={() => onHide('displayBasic')}>
-                    <div>
-                        <InputText id="email" className="loginId" placeholder="아이디 입력" type="text" value={id} onChange={(e) => setId(e.target.value)}/>
-                    </div>   
-                    <div>
-                        <InputText id="password" className="loginPw" placeholder="비밀번호 입력" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>  
-                    </div>       
-
-                    <button className="loginBtn" onClick={(e) => onSearch(e)}>로그인</button>
-                    
-                    <div className="loginEnd">
-                        <a className="loginLine" onClick={() => onClick('displayModal')}>
-                            비밀번호 변경
-                        </a>                            
-                    </div>
-                </Dialog>
-
-                <Dialog header="비밀번호 변경" visible={displayModal} style={{width: '50vw'}} modal={true} footer={renderFooter('displayModal')} onHide={() => onHide('displayModal')}>  
-                    <div>
-                        <InputText id="email" className="loginId" placeholder="아이디 입력" type="text" value={id} onChange={(e) => setId(e.target.value)}/>
-                    </div>
-                    <div>
-                        <InputText id="password" className="loginPw" placeholder="기존 비밀번호 입력" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    </div>
-                    <div>
-                        <InputText id="newPassword" className="loginNewPw" placeholder="새로운 비밀번호 입력" type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)}/>
-                    </div>
-                    <div>
-                        <InputText id="passwordRe" className="loginNewPwRe" placeholder="새로운 비밀번호 확인" type="password" value={confPw} onChange={(e) => setConfPw(e.target.value)}/>
-                    </div>
-
-                    <button className="loginBtn" onClick={(e) => onChange(e)}>변경</button>
-                </Dialog>
-            </div>                  
+            </div>
+            
+            <LoginModal
+                visible={displayBasic} visible2={displayModal} onHide={onHide} onSearch={onSearch}
+                onClick={onClick} onChange={onChange} renderFooter={renderFooter}
+                id={id} password={password} newPw={newPw} confPw={confPw} setId={setId}
+                setPassword={setPassword} setNewPw={setNewPw} setConfPw={setConfPw}
+            />                
         </div>
     );
 };
