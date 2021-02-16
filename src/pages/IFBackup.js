@@ -170,7 +170,7 @@ const IFBackup = () => {
                 if(data.role == "A"){
                     let searchDates = [];
                     let d = new Date();
-                    d.setDate(d.getDate() - 30);
+                    d.setDate(d.getDate() - 7);
                     searchDates[0] = d;
                     searchDates[1] = new Date();
                     setSearchDates(searchDates);
@@ -179,7 +179,6 @@ const IFBackup = () => {
                     document.getElementById("searchBtn").style.display = "block"; 
 
                     backUpService.getTableList().then(data => {  
-                        console.log(data);  
                         setTables(data); 
                         setTableNm(data);
                     });
@@ -200,7 +199,7 @@ const IFBackup = () => {
                     <h1>백업 데이터 조회 / 복구</h1>                    
                     <div style={{padding : '10px 0px 0px 20px', textAlign : 'left'}}>백업일자 <Calendar style={{width: '300px', fontSize : 'large', marginLeft : '50px'}} 
                         value={searchDates} onChange={(e) => setSearchDates(e.value)} 
-                        selectionMode="range" dateFormat="yy-mm-dd" readOnlyInput={true}/></div>
+                        selectionMode="range" dateFormat="yy-mm-dd" readOnlyInput={true} showIcon/></div>
                     <div style={{padding : '10px 0px 0px 20px', textAlign : 'left'}}>테이블 선택 <Dropdown style={{width: '300px', fontSize : 'large' , marginLeft : '33px', textAlign : 'center'}} 
                         optionLabel="name" value={tableNm} options={tables} onChange={(e) => setTableNm(e.value)} 
                         placeholder="테이블 선택"/>

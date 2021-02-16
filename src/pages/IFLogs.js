@@ -37,13 +37,9 @@ export class IFLogs extends Component {
         this.rowExpansionTemplate = this.rowExpansionTemplate.bind(this);
 
         //body cells
-        this.dummyBodyTemplate = this.dummyBodyTemplate.bind(this);
         this.statusBodyTemplate = this.statusBodyTemplate.bind(this);
-        this.actionBodyTemplate = this.actionBodyTemplate.bind(this);
 
         //filters
-        this.onDateFilterChange = this.onDateFilterChange.bind(this);
-        this.filterDate = this.filterDate.bind(this);
         this.statusItemTemplate = this.statusItemTemplate.bind(this);
 
         this.onExpandRow = this.onExpandRow.bind(this);
@@ -101,7 +97,6 @@ export class IFLogs extends Component {
                         }; 
                     }          
                     this.commonService.getSystems(user).then(data => {
-                        // console.log('componentDidMount>getSystems>data:', data);
                         this.systems = data;
                         this.setState({
                             systems: data
@@ -109,7 +104,6 @@ export class IFLogs extends Component {
                     });               
             
                     this.commonService.getInterfaces(user).then(data => {
-                        // console.log('componentDidMount>getInterfaces>data:', data);
                         this.interfaces = data;
                         this.setState({
                             interfaces: data
@@ -117,7 +111,6 @@ export class IFLogs extends Component {
                     });
             
                     this.commonService.getStatuses().then(data => {
-                        // console.log('componentDidMount>getStatuses>data:', data);
                         for(let status of data)
                             this.statusNm[status.statusId] = status.statusNm;
             
@@ -147,8 +140,7 @@ export class IFLogs extends Component {
             dummys: this.state.dummys
         };
 
-        this.commonService.getLogs(param).then(data => {
-            // console.log('componentDidMount>getLogs>data:', data);            
+        this.commonService.getLogs(param).then(data => {        
             var count = 0;
             
             this.datasource = data.data;
@@ -204,12 +196,6 @@ export class IFLogs extends Component {
         //imitate delay of a backend call
         setTimeout(() => {
             this.getLogs(event.first);
-
-            // this.setState({
-            //     first: startIndex,
-            //     logs: this.datasource.slice(startIndex, endIndex),
-            //     loading: false
-            // });
         }, 250);
     }
 
@@ -248,7 +234,7 @@ export class IFLogs extends Component {
                             <div style={{textAlign: 'left'}}>
                                 <div style={{padding: '0px 0px 0px 55px'}}>전송 일자</div>
                                 <Calendar value={this.state.searchDates} onChange={(e) => this.setState({searchDates: e.value} )} 
-                                selectionMode="range" dateFormat="yy-mm-dd" readOnlyInput={true}/></div>
+                                selectionMode="range" dateFormat="yy-mm-dd" readOnlyInput={true} showIcon /></div>
                                 <div id="system" style={{display: 'none', textAlign: 'left'}}>
                                 <div style={{padding: '13px 0px 0px 45px'}}>시스템</div>
                                 <MultiSelect style={{width: '150px'}} optionLabel="systemNm" value={this.state.systems} options={this.systems} 
@@ -270,10 +256,7 @@ export class IFLogs extends Component {
                                 <div style={{padding: '0px 0px 0px 40px'}}>처리결과</div>    
                                 <MultiSelect style={{width: '150px'}} optionLabel="statusNm" 
                                 value={this.state.statuses} options={this.statuses} onChange={(e) => this.setState({statuses: e.value})}/></div>
-                                <div style={{textAlign: 'left'}}>
-                                <div style={{padding: '10px 0px 0px 30px'}}>Dummy여부</div>    
-                                <MultiSelect style={{width: '150px'}} optionLabel="dummyNm" 
-                                value={this.state.dummys} options={this.dummys} onChange={(e) => this.setState({dummys: e.value})}/>
+                                <div style={{textAlign: 'left'}}>                                
                             </div>
                         </div>
 
@@ -288,7 +271,6 @@ export class IFLogs extends Component {
     }
 
     rowExpansionTemplate(e) {
-        //console.log('rowExpansionTemplate:', data);
         let data= this.state.retrievedRows[e.ifSeq];
         if(!data) {
             alert('rowExpansionTemplate: Can not found '+e.ifSeq+' in retrievedRows!');
@@ -320,64 +302,8 @@ export class IFLogs extends Component {
         );
     }
 
-    actionBodyTemplate() {
-        return (
-            <Button type="button" icon="pi pi-cog" className="p-button-secondary"></Button>
-        );
-    }
-
     statusBodyTemplate(rowData) {
         return <span className={classNames('interface-badge', 'status-' + rowData.ifResult)}>{this.statusNm[rowData.ifResult]}</span>;
-    }
-
-    dummyBodyTemplate(rowData) {
-        return (
-            <>
-                <span style={{verticalAlign: 'middle', marginLeft: '.5em'}}>{rowData.isDummy==='Y'?'O':''}</span>
-            </>
-        );
-    }
-
-    renderDateFilter() {
-        return (
-            <Calendar value={this.state.dateFilter} onChange={this.onDateFilterChange} placeholder="Registration Date" dateFormat="yy-mm-dd" className="p-column-filter" />
-        );
-    }
-
-    onDateFilterChange(event) {
-        if (event.value !== null)
-            this.dt.filter(this.formatDate(event.value), 'ifDate', 'equals');
-        else
-            this.dt.filter(null, 'ifDate', 'equals');
-
-        this.setState({dateFilter: event.value});
-    }
-
-    filterDate(value, filter) {
-        if (filter === undefined || filter === null || (typeof filter === 'string' && filter.trim() === '')) {
-            return true;
-        }
-
-        if (value === undefined || value === null) {
-            return false;
-        }
-
-        return value === this.formatDate(filter);
-    }
-
-    formatDate(ifDate) {
-        let month = ifDate.getMonth() + 1;
-        let day = ifDate.getDate();
-
-        if (month < 10) {
-            month = '0' + month;
-        }
-
-        if (day < 10) {
-            day = '0' + day;
-        }
-
-        return ifDate.getFullYear() + '-' + month + '-' + day;
     }
 
     statusItemTemplate(option) {
@@ -388,7 +314,6 @@ export class IFLogs extends Component {
 
     render() {
         const header = this.renderHeader();
-        //const dateFilter = this.renderDateFilter();
 
         return (
             <div className="datatable-doc-demo">
@@ -411,7 +336,6 @@ export class IFLogs extends Component {
                         <Column field="ifResult" header="처리결과" style={{overflow: 'auto'}} body={this.statusBodyTemplate} sortable />
                         <Column field="serverId" header="서버ID" style={{overflow: 'auto'}} sortable />
                         <Column field="time" header="통신시간(초)" style={{overflow: 'auto'}} sortable />
-                        <Column field="isDummy" header="Dummy여부" style={{overflow: 'auto'}} body={this.dummyBodyTemplate} sortable />
                     </DataTable>
                 </div>
             </div>
