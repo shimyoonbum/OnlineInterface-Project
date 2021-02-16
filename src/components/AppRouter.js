@@ -3,13 +3,13 @@ import { Route } from 'react-router-dom';
 
 import { DummyIF } from '../pages/DummyIF';
 import { IFLogs } from '../pages/IFLogs';
-import { IFBackup } from '../pages/IFBackup';
-import { HomeComponent } from '../pages/Home';
+import IFBackup from '../pages/IFBackup';
+import Home from '../pages/Home';
 
 const AppRouter = () => {
     return (
         <React.Fragment>       
-            <Route exact path="/" component={HomeComponent} />
+            <Route exact path="/" component={Home} />
 
             <Route path="/dummyIF" component={DummyIF} />
             <Route path="/IFLogs" component={IFLogs} />
