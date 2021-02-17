@@ -3,19 +3,19 @@ import { Chart } from 'primereact/chart';
 import { Card } from 'primereact/card';
 import { CommonService } from '../service/CommonService';
 import { LoginService } from '../service/LoginService';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import 'primeflex/primeflex.css';
 import '../resources/css/Home.scss';
 
 const Box = styled.div`
-    border: 2px solid black;
+    box-shadow: 0 3px 3px #999 inset, 0 -3px 3px #444 inset;
+    border: 2px solid lightgray;
     border-radius: 10px;
     display: block;
     width: 70%;
     height: 140px;
     margin: 5px auto;
-
     h1 {
         &.success {
             color: blue;
@@ -25,6 +25,14 @@ const Box = styled.div`
             color: red;
         }
     }
+`;
+const Container = styled.div`
+    flex: 1;
+    margin: 0px 15px 15px 15px;
+    width: 30%;
+    text-align: center;
+    display: none;
+    overflow: auto;
 `;
 
 const Content = styled.div`
@@ -118,9 +126,16 @@ const Home = () => {
                         type="bar"
                         data={basicData}
                     />
-                    <div className="container">
-                        <h2>접속 시스템 : {name}</h2>
-                        <h2>{currentTime}</h2>
+                    <Container className="container">
+                        <Card
+                            style={{
+                                background: 'beige',
+                                marginBottom: '30px',
+                            }}
+                        >
+                            <h2>접속 시스템 : {name}</h2>
+                            <h2>{currentTime}</h2>
+                        </Card>
                         <Box>
                             <h2>I/F 성공</h2>
                             <h1 className="success"></h1>
@@ -129,7 +144,7 @@ const Home = () => {
                             <h2>I/F 실패</h2>
                             <h1 className="fail"></h1>
                         </Box>
-                    </div>
+                    </Container>
                 </Content>
             </Card>
         </>
