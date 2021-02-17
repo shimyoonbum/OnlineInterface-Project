@@ -3,9 +3,33 @@ import { Chart } from 'primereact/chart';
 import { Card } from 'primereact/card';
 import { CommonService } from '../service/CommonService';
 import { LoginService } from '../service/LoginService';
+import styled, { css } from 'styled-components';
 
 import 'primeflex/primeflex.css';
-import '../resources/css/Home.css';
+import '../resources/css/Home.scss';
+
+const Box = styled.div`
+    border: 2px solid black;
+    border-radius: 10px;
+    display: block;
+    width: 70%;
+    height: 140px;
+    margin: 5px auto;
+
+    h1 {
+        &.success {
+            color: blue;
+        }
+
+        &.fail {
+            color: red;
+        }
+    }
+`;
+
+const Content = styled.div`
+    display: flex;
+`;
 
 const Home = () => {
     let date = new Date().toLocaleString();
@@ -51,9 +75,9 @@ const Home = () => {
                             basicData.datasets[1].data.push(item.FAIL);
                         });
 
-                        document.getElementById('success').innerHTML =
+                        document.querySelector('.success').innerHTML =
                             basicData.datasets[0].data[6] + ' 회';
-                        document.getElementById('fail').innerHTML =
+                        document.querySelector('.fail').innerHTML =
                             basicData.datasets[1].data[6] + ' 회';
                     });
                 } else {
@@ -86,8 +110,8 @@ const Home = () => {
     return (
         <>
             <Card className="mainChart">
-                <h1 className="mainTitle">중계 시스템 I/F DashBoard</h1>
-                <div className="content">
+                <h1 style={{ fontWeight: 600 }}>중계 시스템 I/F DashBoard</h1>
+                <Content>
                     <Chart
                         className="chart"
                         id="main"
@@ -95,18 +119,18 @@ const Home = () => {
                         data={basicData}
                     />
                     <div className="container">
-                        <h2 id="today">접속 시스템 : {name}</h2>
-                        <h2 id="today">{currentTime}</h2>
-                        <div className="box">
+                        <h2>접속 시스템 : {name}</h2>
+                        <h2>{currentTime}</h2>
+                        <Box>
                             <h2>I/F 성공</h2>
-                            <h1 id="success"></h1>
-                        </div>
-                        <div className="box">
+                            <h1 className="success"></h1>
+                        </Box>
+                        <Box>
                             <h2>I/F 실패</h2>
-                            <h1 id="fail"></h1>
-                        </div>
+                            <h1 className="fail"></h1>
+                        </Box>
                     </div>
-                </div>
+                </Content>
             </Card>
         </>
     );

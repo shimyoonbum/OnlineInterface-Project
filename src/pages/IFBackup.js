@@ -8,7 +8,6 @@ import { BackUpService } from '../service/BackUpService';
 import { LoginService } from '../service/LoginService';
 import { InputText } from 'primereact/components/inputtext/InputText';
 import '../sass/resources/style/DataTable.scss';
-import '../resources/css/IFBackup.css';
 import RecoveryModal from '../modals/RecoveryModal';
 
 const IFBackup = () => {

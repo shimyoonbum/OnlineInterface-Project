@@ -16,24 +16,23 @@ import AppMenu from './components/AppMenu';
 const App = () => {
     const [mobileMenuActive, setMobileMenuActive] = useState(false);
 
-    const onMenuButtonClick = () => {        
-        setMobileMenuActive(!mobileMenuActive)
-    }
+    const onMenuButtonClick = () => {
+        setMobileMenuActive(!mobileMenuActive);
+    };
 
     const onMenuItemClick = () => {
-        setMobileMenuActive(false)
-    }
+        setMobileMenuActive(false);
+    };
 
     const wrapperClassName = classNames('layout-wrapper', {
-        'layout-sidebar-mobile-active': mobileMenuActive
+        'layout-sidebar-mobile-active': mobileMenuActive,
     });
 
     return (
         <div className={wrapperClassName}>
+            <AppTopbar onMenuButtonClick={onMenuButtonClick} />
 
-            <AppTopbar onMenuButtonClick={onMenuButtonClick}/>
-
-            <AppMenu onMenuItemClick={onMenuItemClick}/>
+            <AppMenu onMenuItemClick={onMenuItemClick} />
 
             <div className="layout-content">
                 <AppRouter />

@@ -38,6 +38,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "react-transition-group": "^2.5.1",
+    "styled-components": "^5.2.1",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
@@ -72,8 +73,8 @@
     "not op_mini all"
   ],
   "dev-proxy": "https://rsifdev.pulmuone.com",
-  "dev2-proxy": "https://172.17.2.26:8080",
-  "proxy": "https://localhost:8083",
+  "proxy": "https://172.17.2.26:8080",
+  "psdroxy": "https://localhost:8083",
   "prdwas1-proxy": "https://10.21.3.25:8080",
   "devDependencies": {
     "@babel/core": "^7.11.6",
