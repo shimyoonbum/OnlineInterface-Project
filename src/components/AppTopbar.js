@@ -102,25 +102,25 @@ const AppTopbar = props => {
             window.sessionStorage.removeItem('userToken');
 
             let userInfo = {
-                id: id,
-                pw: sha256(password),
+                username: id,
+                password: password,
             };
 
-            loginService.doLogin(JSON.stringify(userInfo)).then(data => {
-                if (data.responseCode === '000') {
-                    window.alert(data.responseMessage);
-                    onHide('displayBasic');
-                    window.sessionStorage.setItem('userToken', data.data);
+            loginService
+                .doLogin(JSON.stringify(userInfo))
+                .then(res => {
+                    alert('로그인 성공!');
+                    window.sessionStorage.setItem(
+                        'userToken',
+                        res.headers.authorization,
+                    );
                     window.location.reload();
-                } else if (data.responseCode === '003') {
-                    alert(data.responseMessage);
-                } else if (data.responseCode === '004') {
-                    alert(data.responseMessage);
-                } else if (data.responseCode === '005') {
-                    alert(data.responseMessage);
-                    onClick('displayModal');
-                }
-            });
+                })
+                .catch(error => {
+                    if (error.response.status === 401)
+                        alert('비밀번호를 잘못 입력 하셨습니다!');
+                    else alert('존재하지 않는 아이디입니다!');
+                });
         }
     };
 

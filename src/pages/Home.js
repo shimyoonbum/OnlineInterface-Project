@@ -71,8 +71,9 @@ const Home = () => {
         const userSession = window.sessionStorage.getItem('userToken');
         if (userSession != null) {
             loginService.getSession().then(data => {
-                setName(data.name);
-                if (data.role === 'A') {
+                let userInfo = data.data.user;
+                setName(userInfo.systemNm);
+                if (userInfo.role === 'ADMIN') {
                     commonService.getMainInfo().then(data => {
                         basicData.labels = data.data;
                         data.data2.forEach((item, idx) => {
@@ -89,7 +90,7 @@ const Home = () => {
                             basicData.datasets[1].data[6] + ' 회';
                     });
                 } else {
-                    let sys = { system: data.system_id };
+                    let sys = { system: userInfo.systemId };
 
                     commonService.getMainSysInfo(sys).then(data => {
                         basicData.labels = data.data;
@@ -99,6 +100,11 @@ const Home = () => {
                         data.data3.forEach((item, idx) => {
                             basicData.datasets[1].data.push(item.FAIL);
                         });
+
+                        document.querySelector('.success').innerHTML =
+                            basicData.datasets[0].data[6] + ' 회';
+                        document.querySelector('.fail').innerHTML =
+                            basicData.datasets[1].data[6] + ' 회';
                     });
                 }
 
