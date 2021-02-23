@@ -49,10 +49,6 @@ export class IFLogs extends Component {
         this.interfaces = null;
         this.statuses = null;
         this.statusNm = {};
-        this.dummys = [
-            { dummyNm: '정상', dummyId: 'N' },
-            { dummyNm: 'DUMMY', dummyId: 'Y' },
-        ];
     }
 
     componentDidMount() {
@@ -60,66 +56,64 @@ export class IFLogs extends Component {
 
         if (userSession != null) {
             this.loginService.getSession().then(data => {
+                let userInfo = data.data.user;
                 let searchDates = [];
                 let d = new Date();
                 d.setDate(d.getDate() - 6);
                 searchDates[0] = d;
                 searchDates[1] = new Date();
                 this.setState({ searchDates: searchDates });
-                this.setState({ dummys: this.dummys });
 
-                if (data.id === 'N') {
-                    this.setState({ loading: false });
+                let user = null;
+
+                setTimeout(() => {
+                    this.getLogs(0);
+                }, 1000);
+
+                document.getElementById('interface').style.display =
+                    'block';
+                document.getElementById('searchBtn').style.display =
+                    'block';
+
+                if (userInfo.role === 'ADMIN') {
+                    document.getElementById('system').style.display =
+                        'block';
+                    user = {
+                        id: userInfo.id,
+                        role: userInfo.role,
+                    };
                 } else {
-                    let user = null;
-
-                    setTimeout(() => {
-                        this.getLogs(0);
-                    }, 1000);
-
-                    document.getElementById('interface').style.display =
-                        'block';
-                    document.getElementById('searchBtn').style.display =
-                        'block';
-
-                    if (data.role === 'A') {
-                        document.getElementById('system').style.display =
-                            'block';
-                        user = {
-                            id: data.id,
-                            role: data.role,
-                        };
-                    } else {
-                        user = {
-                            id: data.id,
-                            system_id: data.system_id,
-                            role: data.role,
-                        };
-                    }
-                    this.commonService.getSystems(user).then(data => {
-                        this.systems = data;
-                        this.setState({
-                            systems: data,
-                        });
-                    });
-
-                    this.commonService.getInterfaces(user).then(data => {
-                        this.interfaces = data;
-                        this.setState({
-                            interfaces: data,
-                        });
-                    });
-
-                    this.commonService.getStatuses().then(data => {
-                        for (let status of data)
-                            this.statusNm[status.statusId] = status.statusNm;
-
-                        this.statuses = data;
-                        this.setState({
-                            statuses: data,
-                        });
-                    });
+                    user = {
+                        id: userInfo.id,
+                        system_id: userInfo.systemId,
+                        role: userInfo.role,
+                    };
                 }
+
+                this.commonService.getSystems(user).then(data => {
+                    this.systems = data;
+                    this.setState({
+                        systems: data,
+                    });
+                });
+
+                this.commonService.getInterfaces(user).then(data => {
+                    this.interfaces = data;
+                    this.setState({
+                        interfaces: data,
+                    });
+                });
+
+                this.commonService.getStatuses().then(data => {
+                    for (let status of data)
+                        this.statusNm[status.statusId] = status.statusNm;
+
+                    this.statuses = data;
+                    this.setState({
+                        statuses: data,
+                    });
+                });
+                
             });
         } else {
             this.setState({ loading: false });

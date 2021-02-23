@@ -184,7 +184,8 @@ const IFBackup = () => {
 
         if (userSession != null) {
             loginService.getSession().then(data => {
-                if (data.role === 'A') {
+                let userInfo = data.data.user;
+                if (userInfo.role === 'ADMIN') {
                     let searchDates = [];
                     let d = new Date();
                     d.setDate(d.getDate() - 7);
@@ -202,9 +203,7 @@ const IFBackup = () => {
                         setTableNm(data);
                     });
                 } else {
-                    alert(
-                        '메뉴 사용 권한이 없습니다. 관리자에게 문의 바랍니다!',
-                    );
+                    alert('메뉴 사용 권한이 없습니다. 관리자에게 문의 바랍니다!');
                 }
             });
         } else {

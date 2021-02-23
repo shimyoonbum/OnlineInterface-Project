@@ -55,15 +55,15 @@ const LoginModal = ({
                         로그인
                     </button>
 
-                    <div
+                    {/* <div
                         className="loginEnd"
                         onClick={() => onClick('displayModal')}
                     >
                         비밀번호 변경
-                    </div>
+                    </div> */}
                 </Dialog>
 
-                <Dialog
+                {/* <Dialog
                     header="비밀번호 변경"
                     visible={visible2}
                     style={{ width: '50vw' }}
@@ -115,7 +115,7 @@ const LoginModal = ({
                     <button className="loginBtn" onClick={e => onChange(e)}>
                         변경
                     </button>
-                </Dialog>
+                </Dialog> */}
             </div>
         </div>
     );

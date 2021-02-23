@@ -132,8 +132,8 @@ const AppTopbar = props => {
         } else {
             let newInfo = {
                 id: id,
-                pw: sha256(password),
-                newPw: sha256(newPw),
+                pw: password,
+                newPw: newPw,
             };
 
             loginService.setPassWord(newInfo).then(data => {

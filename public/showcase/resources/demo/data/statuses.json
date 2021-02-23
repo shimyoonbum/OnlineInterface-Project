@@ -7,5 +7,9 @@
     {"statusNm": "데이터 없음", "statusId": "103"},
     {"statusNm": "필수항목 누락 오류", "statusId": "104"},
     {"statusNm": "JSON 형식 오류", "statusId": "105"},
-    {"statusNm": "미등록API", "statusId": "109"}
+    {"statusNm": "데이터 접근 제한 오류", "statusId": "106"},
+    {"statusNm": "검색조건 형식 오류", "statusId": "107"},
+    {"statusNm": "업데이트 조건 형식 오류", "statusId": "108"},
+    {"statusNm": "미등록API", "statusId": "109"},
+    {"statusNm": "날짜 조건 형식 오류", "statusId": "110"}
 ]
