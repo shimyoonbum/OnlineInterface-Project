@@ -35,6 +35,20 @@ const Container = styled.div`
     overflow: auto;
 `;
 
+const Loading = styled.div`
+    flex: 1;
+    margin: 40px 15px 15px 15px;
+    width: 30%;
+    text-align: center;
+    overflow: auto;
+`;
+
+const LoadingText = styled.div`
+    font-size: 30px;
+    margin: 15px;
+    text-align: center;
+`;
+
 const Content = styled.div`
     display: flex;
 `;
@@ -42,6 +56,7 @@ const Content = styled.div`
 const Home = () => {
     let date = new Date().toLocaleString();
 
+    const [visible, setVisible] = useState(false);
     const [currentTime, setCurrentTime] = useState(date);
     const [name, setName] = useState(null);
     const [basicData, setBasicData] = useState({
@@ -62,6 +77,18 @@ const Home = () => {
 
     const commonService = new CommonService();
     const loginService = new LoginService();
+
+    useEffect(() => {
+        // visible 값이 true -> false 가 되는 것을 감지
+        if (visible) {
+            document.getElementById('main').style.display = 'block';
+            document.querySelector('.container').style.display = 'block';
+            document.querySelector('.loading').style.display = 'none';
+        }
+        return () => {
+            
+        };
+    }, [visible]); 
 
     useEffect(() => {
         setInterval(() => {
@@ -107,25 +134,28 @@ const Home = () => {
                             basicData.datasets[1].data[6] + ' 회';
                     });
                 }
-
                 setTimeout(() => {
-                    document.getElementById('main').style.display = 'block';
-                    document.querySelector('.container').style.display =
-                        'block';
-                }, 2000);
+                    setVisible(true);
+                }, 4000);
+                
             });
         } else {
             document.getElementById('main').style.display = 'block';
-            document.querySelector('.container').style.display = 'block';
+            document.querySelector('.container').style.display = 'block';            
+            document.querySelector('.loading').style.display = 'none';
             loginService.getProxySession();
         }
-    }, []);
+    }, []);      
 
     return (
         <>
             <Card className="mainChart">
                 <h1 style={{ fontWeight: 600 }}>중계 시스템 I/F DashBoard</h1>
                 <Content>
+                    <Loading className="loading">
+                        <img id="loading-image" src="/showcase/resources/images/Spinner-3.gif" alt="Loading..." />
+                        <LoadingText>Now Loading...</LoadingText>
+                    </Loading>                    
                     <Chart
                         className="chart"
                         id="main"
