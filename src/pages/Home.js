@@ -91,7 +91,7 @@ const Home = () => {
     }, [visible]); 
 
     useEffect(() => {
-        setInterval(() => {
+        let id = setInterval(() => {
             setCurrentTime(new Date().toLocaleString());
         }, 1000);
 
@@ -145,6 +145,8 @@ const Home = () => {
             document.querySelector('.loading').style.display = 'none';
             loginService.getProxySession();
         }
+
+        return () => clearInterval(id);
     }, []);      
 
     return (
